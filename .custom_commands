@@ -1,0 +1,171 @@
+#!/bin/bash
+
+#a block to reset functions and aliases. functions and aliases were still declared, even when i resourced, so i put this
+	unset -f greet block_cd ipromiseimdonewithhomework flasher resource compkot python i wordle
+
+	aliases=(kompile cde I Wordle dist-info python)
+	#this array thing is not really neccessary. I could just them all in one command.
+	for i in ${aliases[@]}; do
+		unalias ${i} &>/null #forward output to /dev/null - errors from nonexistant aliases are redirected. https://en.wikipedia.org/wiki/Null_device | https://linuxhint.com/what_is_dev_null/
+	done
+
+#enables commands that are not in any bin folder, such as Kotlin and Arduino 2.0
+#Arduino 2.0 probably can be removed once full version (instead of RC3) comes out
+export PATH="/home/neriya/Arduino IDE 2.0:/home/neriya/Kotlin/kotlinc/bin:/home/neriya/node16/node-v16.13.2-linux-x64/bin:/usr/local/bin:/usr/bin:/bin:/usr/local/games:/usr/games"
+
+
+function greet() {
+	if [ ! -z ${1} ]; then
+		name=" ${1}"
+	fi
+ 	echo "Hello${name}!"
+	unset name
+}
+
+#custom function for custom startup in ~/.bashrc
+block_cd() {
+	echo "you shouldn't do that. You are in HOMEWORK MODE"
+	#two one line if statements! 119-check if directory has a slash. 120-check if directory was given
+	#(the second one is second because if it was first it would mess the other one up)
+	if test a${1::1} != "a/"; then directory="/${1}"; fi #oren suggested the "a" trick. very clever of him
+	if test -z $1; then directory=~; fi
+	echo "you cannot go to directory ${directory}"
+}
+
+ipromiseimdonewithhomework() {
+	read -t 2 really
+	if test "$really" = "i promise"; then
+		unalias cd
+		cd ~
+	else
+		echo "I solemnly swear you are up to no good!"
+	fi
+}
+
+flasher() { #this is wikipedia's function, formatted by me
+	while true; do
+	printf \\e[?5h #a lot of ansi doesnt work in vscode, such as BEL and this
+	sleep 0.1
+	printf \\e[?5l
+	read -s -n1 -t1 && break #`read` for input - `-s` mutes input (typed characters are not shown) - `-n1` stops after 1 character, regardless of delimiter - `-t1` waits one second
+	done
+	}
+
+resource() {
+	if [ ! -z $1 ]; then 
+		source /$1
+		echo "resourced $1"
+	else
+		source ~/.custom_commands
+		echo "resourced ~/.custom_commands"
+	fi
+}
+
+codecoms() {
+	code ~/.bashrc
+	code ~/.custom_commands
+}
+
+#thankyou() {
+#	#thank a bunch of people,
+#	#starting with oren and working recursively
+#		#makecode
+#		#python
+#		#cpp
+#		#etc
+#	#then other people
+#	echo "thank you"
+#}
+
+arduino2.0() {
+	prevDir=${PWD}
+	echo You began in directory ${prevDir}
+	cd ~/'Arduino IDE 2.0'
+	./arduino-ide
+	cd ${prevDir}
+}
+
+
+#compile and execute kotlin
+compkot() {
+	if [ ! -z ${1} ]; then
+		if [ ${1} = "-h" ]; then
+			echo -e "Custom command to compile and execute Kotlin with one command, because the actual command is too long:"
+			echo -e "Original command:   kotlinc source.kt -include-runtime -d result.jar [-verbose]"
+			echo -e "Custom command usage:"
+			echo -e "\tcompkot source.kt result.jar [-verbose]"
+			echo -e "\tkompile source.kt result.jar [-verbose]"
+			echo -e "[-verbose] applies to both Kotlin compilation *and* Java .jar execution"
+			echo -e "\nMy puns are superb\t\t\tThis is a custom command, not APT, but my APT has Super Cow Powers\t\t(apt-get moo)"
+		else
+			echo -e "\n"
+			echo -e "Compiling \"${1}\" to \"${2}\""
+			echo -e "------------------"
+
+			
+			#success_list=( "Compilation completed" "------------------" "Executing \"${2}\"" "------------------\n" )		#unused, maybe try again in future
+			
+			#the command actually executes *inside* the variable, and we grab a variable from it
+			compilation=$(kotlinc ${1} -include-runtime -d ${2} ${3})
+			if [ $? = 0 ]; then
+				#attempt at using array:
+				#for i in ${success_list}; do
+				#	echo -e ${i}
+				#	sleep 0.2
+				#done
+
+				echo -e "Compilation completed"
+				sleep 0.1
+				echo -e "------------------"
+				sleep 0.1
+				echo -e "Executing \"${2}\" via \"java -jar ${2}\""
+				sleep 0.1
+				echo -e "------------------\n"
+				sleep 0.1
+				java -jar ${3} ${2}
+			else
+				echo -e "------------------"
+				sleep 0.1
+				echo -e "Compilation failed"
+			fi
+		fi
+	else
+		echo "Please include a Kotlin file to be compiled, and the path of the resulting .jar file."
+		echo "Alternatively, append \`-h\` to this command for usage help"
+	fi
+}
+
+alias kompile="compkot"
+
+alias cde="code"
+
+i() {
+	firstarg=${1}
+	shift
+	if [ ! -z ${firstarg} ]; then
+		if [ ${firstarg} = "am" ]; then
+			echo "Ah, you are ${@}"
+		elif [ ${firstarg} = "want" ]; then
+			echo "Well, you can't have ${@}"
+			echo "At least not right now."
+		elif [ ${firstarg} = "should" ]; then
+			echo "Yes you certainly should ${@}"
+			echo "You clearly know that."
+			echo "Now go do it"
+		fi
+	else
+		echo "you"
+	fi
+}
+
+alias I="i"
+
+wordle() {
+	python3 ~/Python/wordle.py ${@}
+}
+
+alias Wordle="wordle"
+
+alias dist-info="cat /etc/os-release"
+
+alias python="python3"
