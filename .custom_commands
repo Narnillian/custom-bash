@@ -1,17 +1,19 @@
 #!/bin/bash
 
 #a block to reset functions and aliases. functions and aliases were still declared, even when i resourced, so i put this
-	unset -f greet block_cd ipromiseimdonewithhomework flasher resource compkot python i wordle
+	unset -f greet block_cd ipromiseimdonewithhomework flasher resource compkot python i wordle push-gh goawayZ butthole dingus
 
-	aliases=(kompile cde I Wordle dist-info python)
+	aliases=(kompile cde I Wordle dist-info python lsdirfirst poo poop poopie)
 	#this array thing is not really neccessary. I could just them all in one command.
 	for i in ${aliases[@]}; do
-		unalias ${i} &>/null #forward output to /dev/null - errors from nonexistant aliases are redirected. https://en.wikipedia.org/wiki/Null_device | https://linuxhint.com/what_is_dev_null/
+		unalias ${i} &>/dev/null #forward output to /dev/null - errors from nonexistant aliases are redirected. https://en.wikipedia.org/wiki/Null_device | https://linuxhint.com/what_is_dev_null/
 	done
 
-#enables commands that are not in any bin folder, such as Kotlin and Arduino 2.0
+
+#enables commands that are not in any bin dir
+#Kotlin, Arduino 2.0, node
 #Arduino 2.0 probably can be removed once full version (instead of RC3) comes out
-export PATH="/home/neriya/Arduino IDE 2.0:/home/neriya/Kotlin/kotlinc/bin:/home/neriya/node16/node-v16.13.2-linux-x64/bin:/usr/local/bin:/usr/bin:/bin:/usr/local/games:/usr/games"
+export PATH=".:/home/neriya/Arduino2.0:/home/neriya/Kotlin/kotlinc/bin:/home/neriya/node16/node-v16.13.2-linux-x64/bin:/usr/local/bin:/usr/bin:/bin:/usr/local/games:/usr/games"
 
 
 function greet() {
@@ -118,10 +120,10 @@ compkot() {
 				sleep 0.1
 				echo -e "------------------"
 				sleep 0.1
-				echo -e "Executing \"${2}\" via \"java -jar ${2}\""
-				sleep 0.1
+				echo -e "Executing \"./${2}\" via \"java -jar ${2}\""
+				sleep 0.2
 				echo -e "------------------\n"
-				sleep 0.1
+				sleep 0.2
 				java -jar ${3} ${2}
 			else
 				echo -e "------------------"
@@ -169,3 +171,28 @@ alias Wordle="wordle"
 alias dist-info="cat /etc/os-release"
 
 alias python="python3"
+
+push-gh() {
+	git add .
+	git commit -m "${1}"
+	git push
+}
+
+alias lsdirfirst="ls --group-directories-first"
+
+
+#Why do I have to do this?
+	goawayZ() {
+		echo -e "\e[5mZECHARYA -- GO AWAY! You are not welcome here\e[0m"
+	}
+	alias poo="goawayZ"
+	alias poop="goaway"
+	alias poopie="goawayZ"
+	butthole() {
+		echo "(Have you checked up your)"
+		goawayZ
+	}
+	dingus() {
+		echo "is what you are"
+		goawayZ
+	}

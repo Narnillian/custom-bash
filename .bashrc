@@ -110,11 +110,12 @@ if ! shopt -oq posix; then
   fi
 fi
 
+#this is onmert's
+export SBPATH=~/orenutil/sb
 
 
 
 #begin custom startup
-DING=true
 date
 source ~/.custom_commands
 greet $USER
@@ -144,14 +145,17 @@ else
 	echo "INITIATING HOMEWORK MODE"
 	cd ~/DoYourHomework
     alias cd="block_cd $1"
+    for i in {0..100}; do
+        printf "\a"
+        sleep 0.5
+    done
 	#make a bash (or cpp or other language) thing
 fi
-for i in {0..7}; do
-    printf "\a"
-done
 
 
 #apt update spotify error:
 #sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 5E3C45D7B312C643
 #https://stackoverflow.com/a/64920409
-#https://linuxconfig.org/ubuntu-20-04-gpg-error-the-following-signatures-couldn-t-be-verified
+#https://linuxconfig.org/ubuntu-20-04-gpg-error-the-following-signatures-couldn-t-be-verifiedSBPATH="/home/neriya/orenutil/sb"
+SBPATH="/home/neriya/orenutil/sb"
+export SBPATH
