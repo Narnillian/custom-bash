@@ -1,9 +1,9 @@
 #!/bin/bash
 
 #a block to reset functions and aliases. functions and aliases were still declared, even when i resourced, so i put this
-	unset -f greet block_cd ipromiseimdonewithhomework flasher resource compkot python i wordle push-gh goawayZ butthole dingus
+	unset -f greet block_cd ipromiseimdonewithhomework flasher resource compkot python i wordle push-gh goawayZ butthole dingus upgrade
 
-	aliases=(kompile cde I Wordle dist-info python lsdirfirst poo poop poopie)
+	aliases=(kompile cde I Wordle dist-info python lsdirfirst poo poop poopie update install devzat finddirs)
 	#this array thing is not really neccessary. I could just them all in one command.
 	for i in ${aliases[@]}; do
 		unalias ${i} &>/dev/null #forward output to /dev/null - errors from nonexistant aliases are redirected. https://en.wikipedia.org/wiki/Null_device | https://linuxhint.com/what_is_dev_null/
@@ -13,7 +13,7 @@
 #enables commands that are not in any bin dir
 #Kotlin, Arduino 2.0, node
 #Arduino 2.0 probably can be removed once full version (instead of RC3) comes out
-export PATH=".:/home/neriya/Arduino2.0:/home/neriya/Kotlin/kotlinc/bin:/home/neriya/node16/node-v16.13.2-linux-x64/bin:/usr/local/bin:/usr/bin:/bin:/usr/local/games:/usr/games"
+export PATH=".:/home/neriya/Arduino2.0:/home/neriya/Kotlin/kotlinc/bin:/usr/local/bin:/usr/bin:/bin:/usr/local/games:/usr/games"
 
 
 function greet() {
@@ -181,6 +181,8 @@ push-gh() {
 alias lsdirfirst="ls --group-directories-first"
 
 
+
+
 #Why do I have to do this?
 	goawayZ() {
 		echo -e "\e[5mZECHARYA -- GO AWAY! You are not welcome here\e[0m"
@@ -196,3 +198,24 @@ alias lsdirfirst="ls --group-directories-first"
 		echo "is what you are"
 		goawayZ
 	}
+
+
+
+upgrade() {
+	echo -e "--> upgrading\n"
+	sudo apt-get upgrade
+	echo -e "\n--> updating\n"
+	sudo apt-get update
+	echo -e "\n--> installing\n"
+	sudo apt-get install
+}
+
+alias update="upgrade"
+
+alias install="upgrade"
+
+alias devzat="ssh narnillian@devzat.hackclub.com"
+
+finddirs() {
+	find . -maxdepth 1 -name "${1}" -type d
+}
