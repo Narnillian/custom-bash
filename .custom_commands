@@ -202,10 +202,10 @@ alias lsdirfirst="ls --group-directories-first"
 
 
 upgrade() {
-	echo -e "--> upgrading\n"
-	sudo apt-get upgrade
-	echo -e "\n--> updating\n"
+	echo -e "--> updating\n"
 	sudo apt-get update
+	echo -e "\n--> upgrading\n"
+	sudo apt-get upgrade
 	echo -e "\n--> installing\n"
 	sudo apt-get install
 }
