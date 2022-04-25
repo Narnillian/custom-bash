@@ -126,9 +126,9 @@ if test "${homework,,}" = n || test "${homework,,}" = no; then
 	echo "You are working in:${PWD}. The files are:"
 	ls -a --color=force
     echo -e "\tDon't worry about your memory! You have *plenty*"
-	for i in {0..5}; do
+	for i in {0..1}; do
         printf "\a"
-        sleep 0.5
+        sleep 0.7
     done
     #if test $DING; then
 	#	#it rings less times than it runs:
