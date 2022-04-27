@@ -3,7 +3,7 @@
 #a block to reset functions and aliases. functions and aliases were still declared, even when i resourced, so i put this
 	unset -f greet block_cd ipromiseimdonewithhomework flasher resource compkot python i wordle push-gh goawayZ butthole dingus upgrade installKotlin
 
-	aliases=(kompile cde I Wordle dist-info python lsdirfirst poo poop poopie update install devzat finddirs)
+	aliases=(kompile cde I Wordle dist-info python lsdirfirst poo poop poopie update install devzat finddirs sl)
 	#this array thing is not really neccessary. I could just them all in one command.
 	for i in ${aliases[@]}; do
 		unalias ${i} &>/dev/null #forward output to /dev/null - errors from nonexistant aliases are redirected. https://en.wikipedia.org/wiki/Null_device | https://linuxhint.com/what_is_dev_null/
@@ -11,7 +11,7 @@
 
 
 #enables commands that are not in any bin dir
-#Kotlin, Arduino 2.0, node
+#Kotlin, Arduino 2.0
 #Arduino 2.0 probably can be removed once full version (instead of RC3) comes out and provides real installation. actually it seems like it will not
 export PATH=".:/home/neriya/Arduino2.0:/home/neriya/Kotlin/kotlinc/bin:/usr/local/bin:/usr/bin:/bin:/usr/local/games:/usr/games"
 
@@ -223,3 +223,6 @@ finddirs() {
 installKotlin() {
 	sudo chmod u+x ~/Kotlin/kotlinc/bin/*
 }
+
+
+alias sl="sl -e	"

@@ -157,3 +157,9 @@ fi
 #sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 5E3C45D7B312C643
 #https://stackoverflow.com/a/64920409
 #https://linuxconfig.org/ubuntu-20-04-gpg-error-the-following-signatures-couldn-t-be-verifiedSBPATH="/home/neriya/orenutil/sb"
+
+
+#shell commands disabled with `enable`:
+#`test`
+#use `enable -n` with no other args to see official list
+
