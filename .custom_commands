@@ -3,7 +3,7 @@
 #a block to reset functions and aliases. functions and aliases were still declared, even when i resourced, so i put this
 	unset -f greet block_cd ipromiseimdonewithhomework flasher resource compkot python i wordle push-gh goawayZ butthole dingus upgrade installKotlin
 
-	aliases=(kompile cde I Wordle dist-info python lsdirfirst poo poop poopie update install devzat finddirs sl)
+	aliases=(kompile cde I Wordle dist-info python lsdirfirst lsdirsfirst poo poop poopie update install devzat finddirs sl ls-a)
 	#this array thing is not really neccessary. I could just them all in one command.
 	for i in ${aliases[@]}; do
 		unalias ${i} &>/dev/null #forward output to /dev/null - errors from nonexistant aliases are redirected. https://en.wikipedia.org/wiki/Null_device | https://linuxhint.com/what_is_dev_null/
@@ -179,7 +179,7 @@ push-gh() {
 }
 
 alias lsdirfirst="ls --group-directories-first"
-
+alias lsdirsfirst="ls --group-directories-first"
 
 
 
@@ -226,3 +226,5 @@ installKotlin() {
 
 
 alias sl="sl -e	"
+
+alias ls-a="ls -a"

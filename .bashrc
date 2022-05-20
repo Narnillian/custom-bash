@@ -110,11 +110,6 @@ if ! shopt -oq posix; then
   fi
 fi
 
-#this is onmert's
-export SBPATH=~/orenutil/sb
-
-
-
 #begin custom startup
 date
 source ~/.custom_commands
@@ -163,3 +158,7 @@ fi
 #`test`
 #use `enable -n` with no other args to see official list
 
+export ORENUTIL="/home/neriya/orenutil"
+#export ORENUTIL
+export SBPATH="/home/neriya/orenutil/sb"
+#export SBPATH
