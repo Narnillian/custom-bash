@@ -162,3 +162,4 @@ export ORENUTIL="/home/neriya/orenutil"
 #export ORENUTIL
 export SBPATH="/home/neriya/orenutil/sb"
 #export SBPATH
+export HISTTIMEFORMAT='%F %T '
