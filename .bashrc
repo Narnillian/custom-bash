@@ -158,8 +158,10 @@ fi
 #`test`
 #use `enable -n` with no other args to see official list
 
-export ORENUTIL="/home/neriya/orenutil"
-#export ORENUTIL
-export SBPATH="/home/neriya/orenutil/sb"
-#export SBPATH
+ORENUTIL="~/orenutil"
+export ORENUTIL
+SBPATH="~/orenutil/sb"
+export SBPATH
 export HISTTIMEFORMAT='%F %T '
+
+
