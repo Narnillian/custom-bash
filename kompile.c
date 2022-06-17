@@ -1,10 +1,16 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
+#include <time.h>
+
+struct timespec ts;
 
 
 int main(int argc, char** argv) {
+    
+    ts.tv_nsec = 100000000;
     int result = 0;
+
     if (argc == 1) {
         printf("Please include a Kotlin file to be compiled, and the path of the resulting .jar file.\n");
         printf("Alternatively, append `-h` to this command for usage information.\n");
@@ -36,18 +42,23 @@ int main(int argc, char** argv) {
             strcat(str1,str2);
             //printf("COMMAND:   \"%s\"\n",str1);
             printf("\nCompiling \"%s\" to \"\033[1;91m%s\033[0m\" via \"\033[1;36m%s\033[0m\"\n",argv[1],argv[2],str1);
+            nanosleep(&ts,NULL);
             printf("------------------\n");
+            nanosleep(&ts,NULL);
             result = system(str1);
             free(str1);
             free(str2);
         }
         if (result) {
             printf("------------------\n");
+            nanosleep(&ts,NULL);
             printf("Compilation failed\n");
             return result;
         } else {
             printf("Compilation completed\n");
+            nanosleep(&ts,NULL);
             printf("------------------\n");
+            nanosleep(&ts,NULL);
             {
                 char *str1 = malloc(1);
                 *str1 = 0;
@@ -63,7 +74,10 @@ int main(int argc, char** argv) {
                 str1 = strcpy(malloc(strlen(str1) + strlen(argv[2]) + 1),str1);
                 strcat(str1,argv[2]);
                 printf("Executing \"%s\" via \"%s\"\n", argv[2], str1);
+                nanosleep(&ts,NULL);
                 printf("------------------\n");
+        ts.tv_nsec = 100000000;
+                nanosleep(&ts,NULL);
                 system(str1);
                 free(str1);
                 return 0;
