@@ -120,7 +120,7 @@ if test "${homework,,}" = n || test "${homework,,}" = no; then
     cd
 	echo "You are working in:${PWD}. The files are:"
 	ls -a --color=force
-    echo -e "\tDon't worry about your memory! You have *plenty*"
+    echo -e "\tDon't worry about your storage! You have *plenty*"
 	for i in {0..1}; do
         printf "\a"
         sleep 0.7
@@ -158,10 +158,15 @@ fi
 #`test`
 #use `enable -n` with no other args to see official list
 
-ORENUTIL="~/orenutil"
+#onmert's /util repo
+ORENUTIL="~/util"
 export ORENUTIL
-SBPATH="~/orenutil/sb"
+SBPATH="~/util/sb"
 export SBPATH
-export HISTTIMEFORMAT='%F %T '
-
+#format for displaying command times
+HISTTIMEFORMAT='%F %T '
+export HISTTIMEFORMAT
+#for custom command showing/hiding cursor
+CURSOR="TRUE"
+export CURSOR
 

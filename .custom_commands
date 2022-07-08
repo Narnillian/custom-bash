@@ -1,7 +1,7 @@
 #!/bin/bash
 
 #a block to reset functions and aliases. functions and aliases were still declared, even when i resourced, so i put this
-	unset -f greet block_cd ipromiseimdonewithhomework flasher resource python i wordle push-gh goawayZ butthole dingus upgrade installKotlin
+	unset -f greet block_cd ipromiseimdonewithhomework flasher resource python i wordle push-gh goawayZ butthole dingus upgrade installKotlin cursor
 
 	aliases=(kompile cde I Wordle dist-info python lsdirfirst lsdirsfirst poo poop poopie update install devzat finddirs sl ls-a gadd gcommit gpush gpull kdenlive installkotlin installkt compkot)
 	#this array thing is not really neccessary. I could just them all in one command.
@@ -202,13 +202,14 @@ alias lsdirsfirst="ls --group-directories-first"
 
 
 upgrade() {
+	date	
 	printf "\e[?25l"
 	echo -e "--> updating\n"
-	sudo apt-get update
+	sudo apt update
 	echo -e "\n--> upgrading\n"
-	sudo apt-get upgrade
+	sudo apt upgrade
 	echo -e "\n--> installing\n"
-	sudo apt-get install
+	sudo apt install
 	printf "\e[?25h"
 }
 
@@ -244,3 +245,43 @@ alias gpush="git push --verbose"
 alias gpull="git pull --verbose"
 
 alias kdenlive="kdenlive.AppImage"
+
+alias install="sudo apt install"
+alias uninstall="sudo apt remove"
+alias remove="sudo apt remove"
+alias reinstall="sudo apt reinstall"
+alias full-upgrade="sudo apt full-upgrade"
+
+cursor() {
+#`[` is giving me a headache:
+#	if [ ! -z ${1} && ${1,,} == "show"  || [ ! -n {1} ] && ${CURSOR} == "FALSE" ]; then
+#		printf "\e[?25h"
+#		CURSOR="TRUE"
+#		export CURSOR
+#  elif [ ! -z ${1} ] && ${1,,} == "hide" || [ ! -n {1} ] && ${CURSOR} == "TRUE"  ]; then
+#		printf "\e[?25l"
+#		CURSOR="FALSE"
+#		export CURSOR
+#	fi
+	if [ ! -z ${1} ]; then
+		if [ ${1,,} = "show" ]; then
+			printf "\e[?25h"
+			CURSOR="TRUE"
+			export CURSOR
+		elif [ ${1,,} = "hide" ]; then
+			printf "\e[?25l"
+			CURSOR="FALSE"
+			export CURSOR
+		fi
+	else
+		if [ ${CURSOR} = "TRUE" ]; then
+			printf "\e[?25l"
+			CURSOR="FALSE"
+			export CURSOR
+		else
+			printf "\e[?25h"
+			CURSOR="TRUE"
+			export CURSOR
+		fi
+	fi
+}
