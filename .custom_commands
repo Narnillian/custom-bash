@@ -3,7 +3,7 @@
 #a block to reset functions and aliases. functions and aliases were still declared, even when i resourced, so i put this
 	unset -f greet block_cd ipromiseimdonewithhomework flasher resource python i wordle push-gh goawayZ butthole dingus upgrade installKotlin cursor
 
-	aliases=(kompile cde I Wordle dist-info python lsdirfirst lsdirsfirst poo poop poopie update install devzat finddirs sl ls-a gadd gcommit gpush gpull kdenlive installkotlin installkt compkot)
+	aliases=(kompile cde I Wordle dist-info python lsdirfirst lsdirsfirst poo poop poopie update devzat finddirs sl ls-a gadd gcommit gpush gpull installkotlin installkt compkot shotcut install uninstall remove reinstall full-upgrade)
 	#this array thing is not really neccessary. I could just them all in one command.
 	for i in ${aliases[@]}; do
 		unalias ${i} &>/dev/null #forward output to /dev/null - errors from nonexistant aliases are redirected. https://en.wikipedia.org/wiki/Null_device | https://linuxhint.com/what_is_dev_null/
@@ -12,7 +12,7 @@
 
 #enables commands that are not in any bin dir
 #Kotlin, Arduino 2.0
-#Arduino 2.0 probably can be removed once full version (instead of RC3) comes out and provides real installation. actually it seems like it will not
+#Arduino 2.0 probably can be removed once full version (instead of RC3) comes out and provides real installation -- actually it seems like it will not
 export PATH=".:/home/neriya/Arduino2.0:/home/neriya/Kotlin/kotlinc/bin:/usr/local/bin:/usr/bin:/bin:/usr/local/games:/usr/games"
 
 
@@ -215,8 +215,6 @@ upgrade() {
 
 alias update="upgrade"
 
-alias install="upgrade"
-
 alias devzat="ssh narnillian@devzat.hackclub.com"
 
 finddirs() {
@@ -244,7 +242,8 @@ alias gcommit="git commit --verbose"
 alias gpush="git push --verbose"
 alias gpull="git pull --verbose"
 
-alias kdenlive="kdenlive.AppImage"
+#i switched video editors -- actually, never actually used kdenlive
+alias shotcut="shotcut.AppImage"
 
 alias install="sudo apt install"
 alias uninstall="sudo apt remove"
