@@ -159,8 +159,8 @@ fi
 #use `enable -n` with no other args to see official list
 
 #onmert's /util repo
-ORENUTIL="~/util"
-export ORENUTIL
+UTIL="~/util"
+export UTIL
 SBPATH="~/util/sb"
 export SBPATH
 #format for displaying command times
