@@ -170,3 +170,5 @@ export HISTTIMEFORMAT
 CURSOR="TRUE"
 export CURSOR
 
+ORENUTIL="/home/neriya/util"
+export ORENUTIL

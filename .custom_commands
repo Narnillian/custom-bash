@@ -2,8 +2,7 @@
 
 #a block to reset functions and aliases. functions and aliases were still declared, even when i resourced, so i put this
 	unset -f greet block_cd ipromiseimdonewithhomework flasher resource python i wordle push-gh goawayZ butthole dingus upgrade installKotlin cursor
-
-	aliases=(kompile cde I Wordle dist-info python lsdirfirst lsdirsfirst poo poop poopie update devzat finddirs sl ls-a gadd gcommit gpush gpull installkotlin installkt compkot shotcut install uninstall remove reinstall full-upgrade)
+	aliases=(kompile cde I Wordle dist-info python lsdirfirst lsdirsfirst poo poop poopie update devzat finddirs sl ls-a gadd gcommit gpush gpull installkotlin installkt compkot shotcut install uninstall remove reinstall full-upgrade gstatus)
 	#this array thing is not really neccessary. I could just them all in one command.
 	for i in ${aliases[@]}; do
 		unalias ${i} &>/dev/null #forward output to /dev/null - errors from nonexistant aliases are redirected. https://en.wikipedia.org/wiki/Null_device | https://linuxhint.com/what_is_dev_null/
@@ -202,7 +201,8 @@ alias lsdirsfirst="ls --group-directories-first"
 
 
 upgrade() {
-	date	
+	date
+	cursor
 	printf "\e[?25l"
 	echo -e "--> updating\n"
 	sudo apt update
@@ -210,7 +210,7 @@ upgrade() {
 	sudo apt upgrade
 	echo -e "\n--> installing\n"
 	sudo apt install
-	printf "\e[?25h"
+	cursor
 }
 
 alias update="upgrade"
@@ -241,6 +241,7 @@ gadd() {
 alias gcommit="git commit --verbose"
 alias gpush="git push --verbose"
 alias gpull="git pull --verbose"
+alias gstatus="git status"
 
 #i switched video editors -- actually, never actually used kdenlive
 alias shotcut="shotcut.AppImage"
@@ -284,3 +285,6 @@ cursor() {
 		fi
 	fi
 }
+
+#not to be confused with Arch package manager
+alias pacman="pacman4console"
