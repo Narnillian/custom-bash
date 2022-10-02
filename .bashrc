@@ -111,12 +111,29 @@ if ! shopt -oq posix; then
 fi
 
 #begin custom startup
+
+
+#onmert's /util repo
+UTIL="~/util"
+export UTIL
+SBPATH="~/util/sb"
+export SBPATH
+
+#format for displaying command times
+HISTTIMEFORMAT='%F %T '
+export HISTTIMEFORMAT
+
+#for custom command showing/hiding cursor
+CURSOR="TRUE"
+export CURSOR
+
+
 date
 source ~/.custom_commands
 greet $USER
 printf "\a"
-read -p "Are you doing homework? (assumed answer is yes) " -t 3 homework
-if test "${homework,,}" = n || test "${homework,,}" = no; then
+read -p "Are you doing homework? (Y/n) " -t 3 homework
+if test "${homework,,:0:1}" = n || test "${homework,,}" = no; then
     cd
 	echo "You are working in:${PWD}. The files are:"
 	ls -a --color=force
@@ -157,18 +174,3 @@ fi
 #shell commands disabled with `enable`:
 #`test`
 #use `enable -n` with no other args to see official list
-
-#onmert's /util repo
-UTIL="~/util"
-export UTIL
-SBPATH="~/util/sb"
-export SBPATH
-#format for displaying command times
-HISTTIMEFORMAT='%F %T '
-export HISTTIMEFORMAT
-#for custom command showing/hiding cursor
-CURSOR="TRUE"
-export CURSOR
-
-ORENUTIL="/home/neriya/util"
-export ORENUTIL

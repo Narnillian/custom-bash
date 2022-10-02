@@ -1,8 +1,8 @@
 #!/bin/bash
 
 #a block to reset functions and aliases. functions and aliases were still declared, even when i resourced, so i put this
-	unset -f greet block_cd ipromiseimdonewithhomework flasher resource python i wordle push-gh goawayZ butthole dingus upgrade installKotlin cursor
-	aliases=(kompile cde I Wordle dist-info python lsdirfirst lsdirsfirst poo poop poopie update devzat finddirs sl ls-a gadd gcommit gpush gpull installkotlin installkt compkot shotcut install uninstall remove reinstall full-upgrade gstatus)
+	unset -f greet block_cd ipromiseimdonewithhomework flasher resource python i wordle push-gh goawayZ butthole dingus upgrade installKotlin cursor installtree
+	aliases=(kompile cde I Wordle dist-info python lsdirfirst lsdirsfirst poo poop poopie update devzat finddirs sl ls-a gadd gcommit gpush gpull installkotlin installkt compkot shotcut install uninstall remove reinstall full-upgrade gstatus pacman vimcoms treesheets trsh tree openurls)
 	#this array thing is not really neccessary. I could just them all in one command.
 	for i in ${aliases[@]}; do
 		unalias ${i} &>/dev/null #forward output to /dev/null - errors from nonexistant aliases are redirected. https://en.wikipedia.org/wiki/Null_device | https://linuxhint.com/what_is_dev_null/
@@ -65,6 +65,7 @@ resource() {
 codecoms() {
 	code ~/.custom_commands ~/.bashrc
 }
+alias vimcoms="vim ~/.custom_commands"
 
 #thankyou() {
 #	#thank a bunch of people,
@@ -288,3 +289,12 @@ cursor() {
 
 #not to be confused with Arch package manager
 alias pacman="pacman4console"
+
+alias treesheets="/home/neriya/strlen/treesheets_src/treesheets"
+alias trsh="treesheets"
+alias tree="treesheets"
+installtree() {
+	chmod +x /home/neriya/strlen/treesheets_src/treesheets
+}
+
+alias openurls="ghups"
