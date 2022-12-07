@@ -5,7 +5,7 @@ from sys import argv
 if len(argv) > 1:
     file = open(argv[1],"r")
 else:
-    file = open("/home/neriya/.gh_src_urls", "r")
+    file = open("/home/neriya/.gh_urls", "r")
 url = file.readline()
 while url:
     openurl(url)
