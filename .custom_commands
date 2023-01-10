@@ -1,18 +1,17 @@
 #!/bin/bash
 
 #a block to reset functions and aliases. functions and aliases were still declared, even when i resourced, so i put this
-	unset -f greet block_cd ipromiseimdonewithhomework flasher resource python i wordle push-gh goawayZ butthole dingus upgrade installKotlin cursor installtree
-	aliases=(kompile cde I Wordle dist-info python lsdirfirst lsdirsfirst poo poop poopie update devzat finddirs sl ls-a gadd gcommit gpush gpull installkotlin installkt compkot shotcut install uninstall remove reinstall full-upgrade gstatus pacman vimcoms treesheets trsh tree openurls)
-	#this array thing is not really neccessary. I could just them all in one command.
+	unset -f greet block_cd ipromiseimdonewithhomework flasher resource codecoms kompile i wordle push-gh goawayZ butthole dingus update finddirs gadd installKotlin cursor installtreesh
+	aliases=(cde I Wordle dist-info python lsdirfirst lsdirsfirst poo poop poopie upgrade devzat sl ls-a gcommit gpush gpull installkotlin installkt compkot shotcut install uninstall remove reinstall full-upgrade gstatus pacman vimcoms treesheets trsh treesh openurls responsively)
+	#this array thing is not really neccessary. I could just unalias them all in one command.
 	for i in ${aliases[@]}; do
-		unalias ${i} &>/dev/null #forward output to /dev/null - errors from nonexistant aliases are redirected. https://en.wikipedia.org/wiki/Null_device | https://linuxhint.com/what_is_dev_null/
+		unalias ${i} &> /dev/null #forward output to /dev/null - errors from nonexistant aliases are redirected. https://en.wikipedia.org/wiki/Null_device | https://linuxhint.com/what_is_dev_null/
 	done
 
 
 #enables commands that are not in any bin dir
-#Kotlin, Arduino 2.0
-#Arduino 2.0 probably can be removed once full version (instead of RC3) comes out and provides real installation -- actually it seems like it will not
-export PATH=".:/home/neriya/Arduino2.0:/home/neriya/Kotlin/kotlinc/bin:/usr/local/bin:/usr/bin:/bin:/usr/local/games:/usr/games"
+#Kotlin, etc
+export PATH=".:/home/neriya/Kotlin/kotlinc/bin:/home/neriya/.local/bin:/usr/local/bin:/usr/bin:/bin:/usr/local/games:/usr/games"
 
 
 function greet() {
@@ -44,13 +43,13 @@ ipromiseimdonewithhomework() {
 }
 
 flasher() { #this is wikipedia's function, formatted by me
-	while true; do
-	printf \\e[?5h #a lot of ansi doesnt work in vscode, such as BEL and this
-	sleep 0.1
-	printf \\e[?5l
-	read -s -n1 -t1 && break #`read` for input - `-s` mutes input (typed characters are not shown) - `-n1` stops after 1 character, regardless of delimiter - `-t1` waits one second
+	while true ; do
+		printf \\e[?5h #a lot of ansi doesnt work in vscode, such as BEL and this
+		sleep 0.1
+		printf \\e[?5l
+		read -s -n1 -t1 && break #`read` for input - `-s` mutes input (typed characters are not shown) - `-n1` stops after 1 character, regardless of delimiter - `-t1` waits one second
 	done
-	}
+}
 
 resource() {
 	if [ ! -z $1 ]; then 
@@ -78,17 +77,17 @@ alias vimcoms="vim ~/.custom_commands"
 #	echo "thank you"
 #}
 
-arduino2.0() {
-	prevDir=${PWD}
-	echo You began in directory ${prevDir}
-	cd ~/'Arduino IDE 2.0'
-	./arduino-ide
-	cd ${prevDir}
-}
+#arduino2.0() {
+#	prevDir=${PWD}
+#	echo You began in directory ${prevDir}
+#	cd ~/'Arduino IDE 2.0'
+#	./arduino-ide
+#	cd ${prevDir}
+#}
 
 `
 #compile and execute kotlin
-compkot() {
+kompile() {
 	if [ ! -z ${1} ]; then
 		if [ ${1} = "-h" ]; then
 			echo -e "Custom command to compile and execute Kotlin with one command, because the actual command is too long:"
@@ -165,7 +164,6 @@ alias I="i"
 wordle() {
 	python3 ~/Python/wordle.py ${@}
 }
-
 alias Wordle="wordle"
 
 alias dist-info="cat /etc/os-release"
@@ -201,7 +199,7 @@ alias lsdirsfirst="ls --group-directories-first"
 
 
 
-upgrade() {
+update() {
 	date
 	cursor
 	printf "\e[?25l"
@@ -209,12 +207,9 @@ upgrade() {
 	sudo apt update
 	echo -e "\n--> upgrading\n"
 	sudo apt upgrade
-	echo -e "\n--> installing\n"
-	sudo apt install
 	cursor
 }
-
-alias update="upgrade"
+alias upgrade="sudo apt upgrade"
 
 alias devzat="ssh narnillian@devzat.hackclub.com"
 
@@ -292,9 +287,11 @@ alias pacman="pacman4console"
 
 alias treesheets="/home/neriya/strlen/treesheets_src/treesheets"
 alias trsh="treesheets"
-alias tree="treesheets"
+alias treesh="treesheets"
 installtree() {
 	chmod +x /home/neriya/strlen/treesheets_src/treesheets
 }
 
 alias openurls="ghups"
+
+alias responsively="Responsively.AppImage"
